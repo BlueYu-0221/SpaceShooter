@@ -166,6 +166,22 @@ function plane_select_display(){
 		gd.drawImage( F_S[5], 70,80,280,210 );
 		break;
 	}
+	
+	// 按键提示
+	gd.save();
+	gd.font = 'bold 20px Arial, Helvetica, sans-serif';
+	gd.textAlign = 'center';
+	gd.textBaseline = 'middle';
+	gd.fillStyle = 'rgba(0, 0, 0, 0.5)';
+	gd.fillRect(200, 545, 400, 40);
+	gd.strokeStyle = 'rgba(0, 200, 255, 0.8)';
+	gd.lineWidth = 2;
+	gd.strokeRect(200, 545, 400, 40);
+	gd.fillStyle = '#ffffff';
+	gd.shadowColor = 'rgba(0, 200, 255, 0.9)';
+	gd.shadowBlur = 10;
+	gd.fillText('← → 选择飞机        ENTER 进入游戏', 400, 565);
+	gd.restore();
 }
 
 

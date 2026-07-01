@@ -1,0 +1,48 @@
+name: Deploy Vite Site to Pages
+
+on:
+  push:
+    branches: ["main"] # 每次推送到 main 分支时触发
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20 # 指定 Node 版本
+          cache: 'yarn'    # 看到你项目里有 yarn.lock，这里用 yarn 加速
+
+      - name: Install dependencies
+        run: yarn install  # 安装依赖
+
+      - name: Build project
+        run: yarn build    # 执行打包，生成全新的 dist 目录
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'   # ✨ 关键点：指定上传打包后生成的 dist 文件夹
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

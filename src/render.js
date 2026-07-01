@@ -169,18 +169,30 @@ function plane_select_display(){
 	
 	// 按键提示
 	gd.save();
-	gd.font = 'bold 20px Arial, Helvetica, sans-serif';
 	gd.textAlign = 'center';
 	gd.textBaseline = 'middle';
+	
+	// 背景底板
 	gd.fillStyle = 'rgba(0, 0, 0, 0.5)';
-	gd.fillRect(200, 545, 400, 40);
+	gd.fillRect(100, 510, 600, 75);
 	gd.strokeStyle = 'rgba(0, 200, 255, 0.8)';
 	gd.lineWidth = 2;
-	gd.strokeRect(200, 545, 400, 40);
+	gd.strokeRect(100, 510, 600, 75);
+	
+	// 文字发光效果
 	gd.fillStyle = '#ffffff';
 	gd.shadowColor = 'rgba(0, 200, 255, 0.9)';
 	gd.shadowBlur = 10;
-	gd.fillText('← → 选择飞机        ENTER 进入游戏', 400, 565);
+	
+	// 第一行：选择飞机提示
+	gd.font = 'bold 18px Arial, Helvetica, sans-serif';
+	gd.fillText('← → 选择飞机            ENTER 进入游戏', 400, 532);
+	
+	// 第二行：游戏内操作提示
+	gd.font = 'bold 16px Arial, Helvetica, sans-serif';
+	gd.shadowColor = 'rgba(255, 200, 0, 0.9)';
+	gd.fillText('A 普通子弹      S 特殊子弹      空格 切换武器', 400, 562);
+	
 	gd.restore();
 }
 

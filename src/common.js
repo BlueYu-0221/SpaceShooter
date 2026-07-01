@@ -1,6 +1,6 @@
 import {gd, canvas} from './render';
 
-const imgRoot = window.location.origin+'/bmp/';
+const imgRoot = './bmp/';
 
 export function loadImage( url ){
 
